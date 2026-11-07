@@ -401,7 +401,7 @@
                 timestamp: new Date().toLocaleString('th-TH')
             };
 
-            const scriptUrl = localStorage.getItem('kengtung_script_url');
+            const scriptUrl = localStorage.getItem('kengtung_script_url') || 'https://script.google.com/macros/s/AKfycbzalIWz4hnYYVfaII00CDjfHJTb69IDPC5KPUxGKIhsMIO7rL-B0teCRpBlQRhFDFLT/exec';
             if (scriptUrl) {
                 try {
                     await fetch(scriptUrl, {
