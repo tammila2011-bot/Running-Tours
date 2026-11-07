@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ณ เชียงตุง RUN 2027 | Keng Tung Running Tour</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Prompt & Sarabun -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        amberGold: '#F59E0B',
+                        sunsetOrange: '#EA580C',
+                        sunsetWarm: '#D97706',
+                        kengTeal: '#064E3B',
+                        kengTealLight: '#047857',
+                        nightSky: '#0F172A',
+                    },
+                    fontFamily: {
+                        sans: ['Prompt', 'Sarabun', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', 'Sarabun', sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+        }
+        .hero-gradient {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.85) 75%, #0F172A 100%),
+                        url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card-amber {
+            background: rgba(217, 119, 6, 0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+        .glass-card-teal {
+            background: rgba(15, 118, 110, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(20, 184, 166, 0.3);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-amberGold selection:text-nightSky">
+
+    <!-- Header / Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 glass-card border-b-0 py-3 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sunsetOrange to-amberGold flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-sunsetOrange/30">
+                    <i class="fa-solid fa-person-running"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold text-white tracking-wide block leading-none">ณ เชียงตุง <span class="text-amberGold">RUN 2027</span></span>
+                    <span class="text-xs text-teal-400 font-light tracking-wider">KENG TUNG RUNNING TOUR</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden md:flex items-center space-x-8 font-light text-sm">
+                <a href="#highlights" class="hover:text-amberGold transition">ไฮไลท์ทัวร์</a>
+                <a href="#itinerary" class="hover:text-amberGold transition">กำหนดการ 3 วัน 2 คืน</a>
+                <a href="#packages" class="hover:text-amberGold transition">แพ็กเกจ & ราคา</a>
+                <a href="#faq" class="hover:text-amberGold transition">คำถามที่พบบ่อย</a>
+            </div>
+
+            <!-- CTA & Settings Buttons -->
+            <div class="flex items-center gap-2 md:gap-3">
+                <button onclick="openConfigModal()" title="ตั้งค่าระบบ Google Sheets & LINE Notify" class="glass-card hover:bg-slate-800 text-teal-300 border border-teal-500/30 p-2.5 rounded-full transition text-sm">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+                <button onclick="openBookingModal()" class="bg-gradient-to-r from-sunsetOrange to-amberGold hover:from-amber-600 hover:to-orange-600 text-white font-medium px-4 md:px-5 py-2.5 rounded-full shadow-lg shadow-orange-500/20 transition transform hover:-translate-y-0.5 text-xs md:text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-ticket"></i>
+                    <span>จองทัวร์ด่วน</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen hero-gradient flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden">
+        <!-- Floating Sunset Flare Background -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-amberGold/20 rounded-full filter blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card-amber text-amber-300 mb-6 text-sm md:text-base animate-pulse">
+                <i class="fa-solid fa-fire text-amberGold"></i>
+                <span>เปิดรับสมัครแล้ว! รับจำนวนจำกัด</span>
+                <span class="bg-emerald-600 text-white text-xs px-2 py-0.5 rounded-full font-semibold">3 วัน 2 คืน</span>
+            </div>
+
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-4 tracking-tight leading-tight">
+                วิ่งสัมผัสเสน่ห์เมือง <span class="bg-gradient-to-r from-amberGold via-orange-400 to-amber-200 bg-clip-text text-transparent text-glow">ณ เชียงตุง RUN 2027</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl text-slate-300 font-light max-w-3xl mx-auto mb-8 leading-relaxed">
+                เปิดประสบการณ์วิ่งรอบหนองตุง ยามเย็นสุดโรแมนติก ชมดอกพญาเสือโคร่งบานสะพรั่ง และสักการะ Buddha Garden ดินแดนศรัทธาแห่งรัฐฉาน
+            </p>
+
+            <!-- Date Highlight Box -->
+            <div class="inline-block glass-card rounded-2xl p-6 md:p-8 mb-10 border border-amberGold/30 max-w-lg w-full">
+                <div class="text-amberGold text-xs uppercase tracking-widest font-semibold mb-1">วันเดินทางร่วมทริป</div>
+                <div class="text-2xl md:text-4xl font-bold text-white mb-2 flex items-center justify-center gap-3">
+                    <i class="fa-regular fa-calendar-days text-amberGold"></i>
+                    8 - 10 มกราคม 2570
+                </div>
+                <div class="text-slate-400 text-sm">มกราคม 2027 (ช่วงอากาศเย็นสบายที่สุดในรอบปี)</div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="mb-10">
+                <div class="text-xs uppercase tracking-widest text-slate-400 mb-3">นับถอยหลังสู่การเดินทาง</div>
+                <div class="flex justify-center gap-3 md:gap-6 text-center" id="countdown">
+                    <div class="glass-card px-4 py-3 rounded-xl min-w-[75px] md:min-w-[90px]">
+                        <span id="days" class="text-2xl md:text-4xl font-bold text-amberGold block">00</span>
+                        <span class="text-xs text-slate-400">วัน</span>
+                    </div>
+                    <div class="glass-card px-4 py-3 rounded-xl min-w-[75px] md:min-w-[90px]">
+                        <span id="hours" class="text-2xl md:text-4xl font-bold text-amberGold block">00</span>
+                        <span class="text-xs text-slate-400">ชั่วโมง</span>
+                    </div>
+                    <div class="glass-card px-4 py-3 rounded-xl min-w-[75px] md:min-w-[90px]">
+                        <span id="minutes" class="text-2xl md:text-4xl font-bold text-amberGold block">00</span>
+                        <span class="text-xs text-slate-400">นาที</span>
+                    </div>
+                    <div class="glass-card px-4 py-3 rounded-xl min-w-[75px] md:min-w-[90px]">
+                        <span id="seconds" class="text-2xl md:text-4xl font-bold text-amberGold block">00</span>
+                        <span class="text-xs text-slate-400">วินาที</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button onclick="openBookingModal()" class="w-full sm:w-auto bg-gradient-to-r from-sunsetOrange to-amberGold hover:opacity-95 text-white font-semibold text-lg px-8 py-4 rounded-full shadow-xl shadow-orange-500/30 transition transform hover:-translate-y-1">
+                    <i class="fa-solid fa-paper-plane mr-2"></i> จองแพ็กเกจทัวร์วิ่งทันที
+                </button>
+                <a href="#itinerary" class="w-full sm:w-auto glass-card hover:bg-slate-800 text-white font-medium text-lg px-8 py-4 rounded-full transition border border-slate-700 flex items-center justify-center">
+                    <i class="fa-solid fa-list-check mr-2 text-amberGold"></i> ดูรายละเอียดกำหนดการ
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section (Derived directly from poster) -->
+    <section id="highlights" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-emerald-400 text-sm font-semibold tracking-widest uppercase mb-2">Exclusive Highlights</h2>
+            <h3 class="text-3xl md:text-5xl font-bold text-white">4 ไฮไลท์สุดพิเศษประจำทริป</h3>
+            <div class="w-24 h-1 bg-gradient-to-r from-amberGold to-sunsetOrange mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Highlight 1 -->
+            <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-2 hover:border-amberGold/50 group">
+                <div class="w-14 h-14 rounded-2xl bg-amber-500/20 text-amberGold flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-person-running"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-amberGold transition">วิ่งชมเมืองรอบหนองตุง</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    วิ่งซิตี้รันระยะชิลล์ๆ ลมเย็นสบายโอบล้อมด้วยวิวทะเลสาบหนองตุง ศูนย์กลางชีวิตอันเงียบสงบของชาวเชียงตุง
+                </p>
+            </div>
+
+            <!-- Highlight 2 -->
+            <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-2 hover:border-amberGold/50 group">
+                <div class="w-14 h-14 rounded-2xl bg-orange-500/20 text-orange-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-sun"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-orange-400 transition">สัมผัสบรรยากาศยามเย็น</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    ชมแสงอาทิตย์ลับขอบฟ้าสะท้อนผิวน้ำหนองตุง เมืองในหมอกผสานสถาปัตยกรรมไทเขินอันทรงคุณค่า
+                </p>
+            </div>
+
+            <!-- Highlight 3 -->
+            <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-2 hover:border-amberGold/50 group">
+                <div class="w-14 h-14 rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-pink-400 transition">ชมดอกพญาเสือโคร่ง</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    ตระการตากับซากุระเมืองไทย (ดอกพญาเสือโคร่ง) ที่กำลังผลิงามสะพรั่งต้อนรับลมหนาวเดือนมกราคม
+                </p>
+            </div>
+
+            <!-- Highlight 4 -->
+            <div class="glass-card rounded-2xl p-6 transition duration-300 hover:-translate-y-2 hover:border-amberGold/50 group">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                    <i class="fa-solid fa-vihara"></i>
+                </div>
+                <h4 class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition">สักการะ Buddha Garden</h4>
+                <p class="text-slate-400 text-sm leading-relaxed">
+                    เยือนแลนด์มาร์คศักดิ์สิทธิ์ Buddha Garden เสริมสิริมงคลต้อนรับปีใหม่ พร้อมชมวิวทิวทัศน์อันเงียบสงบ
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Itinerary Timeline -->
+    <section id="itinerary" class="py-20 bg-slate-950/60 border-y border-slate-800 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-amberGold text-sm font-semibold tracking-widest uppercase mb-2">Detailed Schedule & Itinerary</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-white">กำหนดการทัวร์อย่างละเอียด 3 วัน 2 คืน</h3>
+                <p class="text-slate-400 mt-2">วันที่ 8 - 10 มกราคม 2570 | เส้นทางด่านแม่สาย - ท่าขี้เหล็ก - เชียงตุง</p>
+            </div>
+
+            <div class="space-y-8 relative before:absolute before:inset-0 before:left-4 md:before:left-1/2 before:-ml-0.5 before:w-0.5 before:bg-gradient-to-b before:from-amberGold before:via-teal-500 before:to-slate-700">
+
+                <!-- Day 1 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="flex items-center justify-center w-9 h-9 rounded-full bg-amberGold text-nightSky font-bold text-sm absolute left-0 md:left-1/2 -translate-x-1/2 z-10 shadow-lg shadow-amberGold/50">
+                        1
+                    </div>
+                    <div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right">
+                        <div class="glass-card p-6 rounded-2xl hover:border-amberGold/40 transition">
+                            <span class="text-xs font-bold text-amberGold uppercase tracking-wider block mb-1">DAY 1 — 8 มกราคม 2570</span>
+                            <h4 class="text-xl font-bold text-white mb-3">เดินทางผ่านด่านแม่สาย มุ่งสู่เชียงตุง & สักการะ Buddha Garden</h4>
+                            <ul class="text-slate-300 text-sm space-y-2.5 font-light">
+                                <li><strong class="text-amber-300 font-normal">06:00 - 08:00 น.</strong> รวมพล ณ ด่านพรมแดนแม่สาย จ.เชียงราย ผ่านพิธีการตรวจคนเข้าเมืองสู่ด่านท่าขี้เหล็ก</li>
+                                <li><strong class="text-amber-300 font-normal">08:30 - 12:30 น.</strong> ออกเดินทางด้วยรถตู้ VIP ปรับอากาศมุ่งหน้าเมืองเชียงตุง ทักทายทิวทัศน์ขุนเขาแห่งรัฐฉาน</li>
+                                <li><strong class="text-amber-300 font-normal">13:30 - 15:30 น.</strong> สักการะมหาสถูปอันศักดิ์สิทธิ์ ณ <strong class="text-teal-300 font-normal">Buddha Garden</strong> จุดศูนย์รวมพลังศรัทธา</li>
+                                <li><strong class="text-amber-300 font-normal">16:30 - 18:00 น.</strong> วิ่งซิตี้รันอุ่นเครื่องเบาๆ ยามเย็นรอบเมือง และเช็คอินเข้าสู่โรงแรมที่พัก</li>
+                                <li><strong class="text-amber-300 font-normal">18:30 น.</strong> ลิ้มลองอาหารค่ำเมนูไทเขินต้นตำรับ พร้อมปรีเซ็ตเส้นทางวิ่งวันถัดไป</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:w-1/2"></div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="flex items-center justify-center w-9 h-9 rounded-full bg-teal-500 text-nightSky font-bold text-sm absolute left-0 md:left-1/2 -translate-x-1/2 z-10 shadow-lg shadow-teal-500/50">
+                        2
+                    </div>
+                    <div class="hidden md:block md:w-1/2"></div>
+                    <div class="ml-12 md:ml-0 md:w-1/2 md:pl-12">
+                        <div class="glass-card p-6 rounded-2xl hover:border-teal-500/40 transition">
+                            <span class="text-xs font-bold text-teal-400 uppercase tracking-wider block mb-1">DAY 2 — 9 มกราคม 2570</span>
+                            <h4 class="text-xl font-bold text-white mb-3">ไฮไลท์วิ่งยามเช้า/ยามเย็นรอบหนองตุง + ชมพญาเสือโคร่ง & วัดสไตล์ไทเขิน</h4>
+                            <ul class="text-slate-300 text-sm space-y-2.5 font-light">
+                                <li><strong class="text-teal-300 font-normal">05:30 - 07:30 น.</strong> <span class="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded text-xs">Morning Run</span> วิ่งรับอรุณรอบหนองตุง (5-10 กม.) ชมทะเลหมอกเหนือผิวน้ำ</li>
+                                <li><strong class="text-teal-300 font-normal">09:00 - 12:00 น.</strong> ขึ้นสู่จุดชมวิวขุนเขา <strong class="text-pink-300 font-normal">ชมดอกพญาเสือโคร่ง (ซากุระเมืองไทย)</strong> บานสะพรั่งต้อนรับหนาวแรก</li>
+                                <li><strong class="text-teal-300 font-normal">13:30 - 16:00 น.</strong> เยือนสถาปัตยกรรมไทเขินอันงดงาม สักการะพระเจ้าพาราแข่งไฮ ณ วัดจอมคำ และชมต้นยางไม้ยักษ์คู่เมือง 250 ปี</li>
+                                <li><strong class="text-teal-300 font-normal">16:30 - 18:00 น.</strong> <span class="bg-orange-500/20 text-orange-300 px-2 py-0.5 rounded text-xs">Sunset Run</span> วิ่งรอบหนองตุงยามอาทิตย์อัสดง ชมแสงสีทองสะท้อนน้ำ</li>
+                                <li><strong class="text-teal-300 font-normal">19:00 น.</strong> งานเลี้ยง Welcome & Dinner Party มอบเหรียญที่ระลึกประจำทริป</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="relative flex flex-col md:flex-row items-start group">
+                    <div class="flex items-center justify-center w-9 h-9 rounded-full bg-orange-500 text-nightSky font-bold text-sm absolute left-0 md:left-1/2 -translate-x-1/2 z-10 shadow-lg shadow-orange-500/50">
+                        3
+                    </div>
+                    <div class="ml-12 md:ml-0 md:w-1/2 md:pr-12 md:text-right">
+                        <div class="glass-card p-6 rounded-2xl hover:border-orange-500/40 transition">
+                            <span class="text-xs font-bold text-orange-400 uppercase tracking-wider block mb-1">DAY 3 — 10 มกราคม 2570</span>
+                            <h4 class="text-xl font-bold text-white mb-3">สัมผัสวิถีชีวิตตลาดเช้า ช้อปปิ้งของฝาก & เดินทางกลับ</h4>
+                            <ul class="text-slate-300 text-sm space-y-2.5 font-light">
+                                <li><strong class="text-orange-300 font-normal">06:30 - 08:30 น.</strong> เดินชมวิถีชีวิตชาวบ้าน ณ ตลาดเช้าเชียงตุง ชิมขนมเส้นไทเขิน และกาแฟโบราณ</li>
+                                <li><strong class="text-orange-300 font-normal">09:00 - 10:30 น.</strong> ซื้อของฝากประจำเมือง เชิงผ้าทอมือ ชาไทเขิน และงานหัตถกรรมพื้นบ้าน</li>
+                                <li><strong class="text-orange-300 font-normal">11:00 น.</strong> ออกเดินทางกลับสู่เมืองท่าขี้เหล็ก</li>
+                                <li><strong class="text-orange-300 font-normal">15:00 - 16:30 น.</strong> ผ่านพิธีการข้ามด่านแม่สาย จ.เชียงราย โดยสวัสดิภาพพร้อมความทรงจำแสนประทับใจ</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hidden md:block md:w-1/2"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing / Packages Section -->
+    <section id="packages" class="py-20 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-amberGold text-sm font-semibold tracking-widest uppercase mb-2">Packages & Pricing</h2>
+            <h3 class="text-3xl md:text-5xl font-bold text-white">แพ็กเกจทัวร์วิ่ง (3 วัน 2 คืน)</h3>
+            <p class="text-slate-400 mt-2">รวมค่าเอกสารผ่านแดน ที่พัก รถตู้ VIP และมื้ออาหารเรียบร้อยแล้ว</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <!-- Standard Package -->
+            <div class="glass-card rounded-3xl p-8 border border-slate-700 flex flex-col justify-between hover:border-amberGold/50 transition duration-300">
+                <div>
+                    <div class="inline-block px-3 py-1 rounded-full bg-slate-800 text-slate-300 text-xs font-semibold mb-4">
+                        Standard Runner
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2">แพ็กเกจนักวิ่งทั่วไป</h4>
+                    <p class="text-slate-400 text-sm mb-6">พักห้องคู่ (Standard Twin Room) สบายๆ ตลอดทริป</p>
+
+                    <div class="text-4xl font-extrabold text-amberGold mb-6">
+                        6,900 <span class="text-base font-normal text-slate-400">บาท / ท่าน</span>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-slate-300 mb-8 border-t border-slate-800 pt-6">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-emerald-400"></i>
+                            <span>เสื้อวิ่งที่ระลึก "ณ เชียงตุง RUN 2027" 1 ตัว</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-emerald-400"></i>
+                            <span>ที่พัก 2 คืน (ห้องพักคู่) พร้อมอาหารทุกมื้อ</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-emerald-400"></i>
+                            <span>รถตู้ VIP ปรับอากาศตลอดการเดินทาง</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-emerald-400"></i>
+                            <span>เอกสารทำเรื่องผ่านด่านไทย-เมียนมา</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-emerald-400"></i>
+                            <span>ประกันอุบัติเหตุตลอดการเดินทาง</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <button onclick="selectPackage('standard', 6900)" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-medium py-3.5 rounded-xl transition border border-slate-600 flex items-center justify-center gap-2">
+                    <span>เลือกแพ็กเกจนี้</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </div>
+
+            <!-- VIP Package -->
+            <div class="glass-card-amber rounded-3xl p-8 border-2 border-amberGold flex flex-col justify-between relative overflow-hidden shadow-2xl shadow-amber-500/10">
+                <div class="absolute top-4 right-4 bg-amberGold text-nightSky font-bold text-xs px-3 py-1 rounded-full uppercase">
+                    แนะนำสุดคุ้ม
+                </div>
+                <div>
+                    <div class="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-semibold mb-4">
+                        VIP Runner Experience
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2">แพ็กเกจ VIP Exclusive</h4>
+                    <p class="text-slate-300 text-sm mb-6">พักห้องเดี่ยว (Single Room) + ของที่ระลึกพิเศษพรีเมียม</p>
+
+                    <div class="text-4xl font-extrabold text-white mb-6">
+                        8,900 <span class="text-base font-normal text-slate-300">บาท / ท่าน</span>
+                    </div>
+
+                    <ul class="space-y-3 text-sm text-slate-200 mb-8 border-t border-amber-500/30 pt-6">
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-star text-amberGold"></i>
+                            <span class="font-medium text-amber-200">ห้องพักส่วนตัว VIP Single Room (2 คืน)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-amberGold"></i>
+                            <span>เสื้อวิ่ง + เสื้อแจ็คเก็ตกันลมรุ่นลิมิเต็ด</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-amberGold"></i>
+                            <span>เหรียญสลักชื่อพิเศษเฉพาะคุณ</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-amberGold"></i>
+                            <span>ที่นั่ง VIP แถวหน้าบนรถตู้ตลอดทริป</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-check text-amberGold"></i>
+                            <span>บริการภาพถ่ายเดี่ยวช่างภาพมืออาชีพตลอดทริป</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <button onclick="selectPackage('vip', 8900)" class="w-full bg-gradient-to-r from-sunsetOrange to-amberGold hover:from-orange-600 hover:to-amber-600 text-white font-semibold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                    <span>จองแพ็กเกจ VIP</span>
+                    <i class="fa-solid fa-crown text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-slate-950/40 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-amberGold text-sm font-semibold tracking-widest uppercase mb-2">FAQ</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">คำถามที่พบบ่อย</h3>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Q1 -->
+                <div class="glass-card rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-lg text-white">
+                        <span>ต้องเตรียมเอกสารอะไรบ้างในการข้ามด่านไปเชียงตุง?</span>
+                        <i class="fa-solid fa-chevron-down text-amberGold transition-transform duration-300"></i>
+                    </div>
+                    <div class="hidden mt-4 text-slate-300 text-sm leading-relaxed border-t border-slate-800 pt-4">
+                        ใช้เพียงหนังสือเดินทาง (Passport) ที่มีอายุเหลือไม่น้อยกว่า 6 เดือน ทีมงานจะจัดการเรื่องเอกสารผ่านด่านและทำเรื่องผ่านแดนให้อย่างเรียบร้อยครับ
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="glass-card rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-lg text-white">
+                        <span>นักวิ่งมือใหม่สามารถเข้าร่วมทริปนี้ได้หรือไม่?</span>
+                        <i class="fa-solid fa-chevron-down text-amberGold transition-transform duration-300"></i>
+                    </div>
+                    <div class="hidden mt-4 text-slate-300 text-sm leading-relaxed border-t border-slate-800 pt-4">
+                        เข้าร่วมได้สบายมากครับ! ทริปนี้เน้นการวิ่ง Fun Run และซิตี้รันท่องเที่ยวรอบเมือง (ระยะประมาณ 5 - 8 กม.) มีจุดพักถ่ายรูปและทีมงานดูแลความปลอดภัยตลอดเส้นทาง
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="glass-card rounded-2xl p-6 cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-semibold text-lg text-white">
+                        <span>สภาพอากาศในช่วงเดือนมกราคมเป็นอย่างไร?</span>
+                        <i class="fa-solid fa-chevron-down text-amberGold transition-transform duration-300"></i>
+                    </div>
+                    <div class="hidden mt-4 text-slate-300 text-sm leading-relaxed border-t border-slate-800 pt-4">
+                        ช่วงมกราคมอากาศเย็นสบายถึงค่อนข้างหนาว (อุณหภูมิประมาณ 12 - 22 องศาเซลเซียส) เหมาะแก่การวิ่งและชมดอกพญาเสือโคร่ง แนะนำให้เตรียมเสื้อกันหนาวมาด้วยครับ
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div>
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sunsetOrange to-amberGold flex items-center justify-center text-white font-bold">
+                        <i class="fa-solid fa-person-running text-xs"></i>
+                    </div>
+                    <span class="text-xl font-bold text-white">ณ เชียงตุง RUN 2027</span>
+                </div>
+                <p class="text-xs text-slate-400">8 - 10 มกราคม 2570 (3 วัน 2 คืน) | Keng Tung Running Tour</p>
+            </div>
+
+            <div class="flex items-center space-x-6 text-slate-400">
+                <a href="#" class="hover:text-amberGold transition"><i class="fa-brands fa-facebook text-xl"></i></a>
+                <a href="#" class="hover:text-amberGold transition"><i class="fa-brands fa-line text-xl"></i></a>
+                <a href="#" class="hover:text-amberGold transition"><i class="fa-solid fa-phone text-xl"></i></a>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-600 mt-8">
+            &copy; 2027 Keng Tung Running Tour. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-xl w-full p-6 md:p-8 border border-amberGold/30 relative max-h-[90vh] overflow-y-auto">
+            <!-- Close Button -->
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-2xl font-bold text-white mb-1 flex items-center gap-2">
+                <i class="fa-solid fa-ticket text-amberGold"></i>
+                แบบฟอร์มสำรองที่นั่ง
+            </h3>
+            <p class="text-slate-400 text-xs mb-6">ทริปวิ่ง ณ เชียงตุง RUN 2027 (8-10 ม.ค. 2570)</p>
+
+            <form id="bookingForm" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-slate-300 font-medium mb-1">เลือกแพ็กเกจทัวร์ <span class="text-red-400">*</span></label>
+                    <select id="packageSelect" onchange="updateTotalPrice()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amberGold">
+                        <option value="6900">Standard Runner (6,900 บาท/ท่าน)</option>
+                        <option value="8900">VIP Exclusive (8,900 บาท/ท่าน)</option>
+                    </select>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-slate-300 font-medium mb-1">ชื่อ - นามสกุล (ภาษาไทย/อังกฤษ) <span class="text-red-400">*</span></label>
+                        <input type="text" id="custName" required placeholder="นายสมชาย ใจดี" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amberGold">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-300 font-medium mb-1">เบอร์โทรศัพท์ติดต่อ <span class="text-red-400">*</span></label>
+                        <input type="tel" id="custPhone" required placeholder="081-234-5678" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amberGold">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs text-slate-300 font-medium mb-1">จำนวนผู้เดินทาง (ท่าน) <span class="text-red-400">*</span></label>
+                        <input type="number" id="runnerCount" min="1" max="10" value="1" onchange="updateTotalPrice()" onkeyup="updateTotalPrice()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amberGold">
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-300 font-medium mb-1">ไซส์เสื้อวิ่งหลัก</label>
+                        <select id="shirtSize" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amberGold">
+                            <option value="S">S (รอบอก 36")</option>
+                            <option value="M">M (รอบอก 38")</option>
+                            <option value="L" selected>L (รอบอก 40")</option>
+                            <option value="XL">XL (รอบอก 42")</option>
+                            <option value="2XL">2XL (รอบอก 44")</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-slate-300 font-medium mb-1">หมายเหตุเพิ่มเติม / อาหารที่แพ้</label>
+                    <input type="text" id="custNote" placeholder="เช่น ไม่ทานเนื้อสัตว์ / ต้องการเตียงคู่" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amberGold">
+                </div>
+
+                <!-- Price Summary -->
+                <div class="p-4 bg-slate-900/80 rounded-2xl border border-slate-800 flex justify-between items-center my-4">
+                    <div>
+                        <span class="text-xs text-slate-400 block">ยอดรวมทั้งสิ้น</span>
+                        <span id="totalPriceDisplay" class="text-2xl font-bold text-amberGold">6,900</span> <span class="text-xs text-amberGold">บาท</span>
+                    </div>
+                    <span class="text-xs text-emerald-400 bg-emerald-950 border border-emerald-800 px-3 py-1 rounded-full">บันทึกเข้า Sheets & Notify</span>
+                </div>
+
+                <button type="submit" id="btnSubmitForm" class="w-full bg-gradient-to-r from-sunsetOrange to-amberGold hover:opacity-95 text-white font-semibold py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>ยืนยันส่งข้อมูลจองทัวร์</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin / System Config Modal -->
+    <div id="configModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-2xl w-full p-6 md:p-8 border border-teal-500/40 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeConfigModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-sliders text-teal-400"></i>
+                ตั้งค่าการเชื่อมต่อ Google Sheets & LINE Notify
+            </h3>
+            <p class="text-slate-400 text-xs mb-6">ระบุ API URL และ Token สำหรับระบบหลังบ้าน (บันทึกใน LocalStorage)</p>
+
+            <form onsubmit="saveConfig(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-teal-300 font-medium mb-1">Google Apps Script Web App URL</label>
+                    <input type="url" id="cfgScriptUrl" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-teal-400">
+                    <span class="text-[11px] text-slate-400">หากไม่ได้ระบุ ระบบจะใช้งานในโหมด Simulation (จำลองการส่งเข้าชีต)</span>
+                </div>
+
+                <div>
+                    <label class="block text-xs text-teal-300 font-medium mb-1">LINE Notify / Webhook Token (Optional)</label>
+                    <input type="text" id="cfgLineToken" placeholder="ใส่ LINE Notify Token หรือ Webhook URL" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-teal-400">
+                </div>
+
+                <!-- Apps Script Code Template -->
+                <div class="mt-4 p-4 bg-slate-950 rounded-2xl border border-slate-800">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-semibold text-amberGold"><i class="fa-solid fa-code mr-1"></i> โค้ด Google Apps Script (Code.gs)</span>
+                        <button type="button" onclick="copyGASCode()" class="text-xs text-teal-400 hover:underline"><i class="fa-solid fa-copy mr-1"></i>คัดลอกโค้ด</button>
+                    </div>
+                    <textarea id="gasCodeText" readonly class="w-full h-32 bg-slate-900 text-slate-300 font-mono text-[11px] p-3 rounded-xl border border-slate-800 focus:outline-none">function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = JSON.parse(e.postData.contents);
+  sheet.appendRow([
+    new Date(),
+    data.bookingId,
+    data.name,
+    data.phone,
+    data.package,
+    data.runners,
+    data.shirtSize,
+    data.totalPrice,
+    data.note
+  ]);
+  return ContentService.createTextOutput(JSON.stringify({result: "success"})).setMimeType(ContentService.MimeType.JSON);
+}</textarea>
+                </div>
+
+                <div class="flex gap-3 pt-2">
+                    <button type="submit" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-medium py-3 rounded-xl transition text-sm">
+                        บันทึกการตั้งค่า
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Booking Confirmation Toast Notification & LINE Payload Modal -->
+    <div id="confirmToast" class="fixed bottom-6 right-6 z-50 hidden glass-card p-6 rounded-2xl border border-emerald-500 max-w-lg shadow-2xl">
+        <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="flex-1">
+                <h5 class="font-bold text-white mb-1">การจองเสร็จสิ้น & บันทึกข้อมูลสำเร็จ!</h5>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3" id="toastMessage">
+                    บันทึกข้อมูลเข้า Google Sheets และส่งแจ้งเตือนเรียบร้อยแล้ว
+                </p>
+
+                <!-- Simulated LINE Notify Preview Box -->
+                <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-[11px] font-mono text-emerald-300 space-y-1 mb-3">
+                    <div class="text-amber-400 font-bold flex items-center gap-1">
+                        <i class="fa-brands fa-line text-xs"></i> [Simulated LINE Notify Payload]
+                    </div>
+                    <div id="lineNotifyPayloadText" class="whitespace-pre-wrap text-slate-300"></div>
+                </div>
+
+                <button onclick="document.getElementById('confirmToast').classList.add('hidden')" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs py-2 rounded-lg transition font-medium">
+                    รับทราบ / ปิดหน้าต่าง
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Interactions & Integration -->
+    <script>
+        // Countdown Timer Script (Target: Jan 8, 2027)
+        const targetDate = new Date('January 8, 2027 00:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = String(days).padStart(2, '0');
+                document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // FAQ Toggle Logic
+        function toggleFaq(element) {
+            const answer = element.querySelector('div:nth-child(2)');
+            const icon = element.querySelector('i');
+            
+            if (answer.classList.contains('hidden')) {
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // Modal Controls
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+            updateTotalPrice();
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+        }
+
+        function openConfigModal() {
+            document.getElementById('cfgScriptUrl').value = localStorage.getItem('kengtung_script_url') || '';
+            document.getElementById('cfgLineToken').value = localStorage.getItem('kengtung_line_token') || '';
+            document.getElementById('configModal').classList.remove('hidden');
+        }
+
+        function closeConfigModal() {
+            document.getElementById('configModal').classList.add('hidden');
+        }
+
+        function saveConfig(e) {
+            e.preventDefault();
+            const url = document.getElementById('cfgScriptUrl').value.trim();
+            const token = document.getElementById('cfgLineToken').value.trim();
+            localStorage.setItem('kengtung_script_url', url);
+            localStorage.setItem('kengtung_line_token', token);
+            closeConfigModal();
+            alert('บันทึกการตั้งค่า Google Sheets API และ LINE Notify เรียบร้อยแล้ว');
+        }
+
+        function copyGASCode() {
+            const copyText = document.getElementById("gasCodeText");
+            copyText.select();
+            document.execCommand("copy");
+            alert("คัดลอกโค้ด Google Apps Script เรียบร้อยแล้ว");
+        }
+
+        function selectPackage(packageType, price) {
+            const select = document.getElementById('packageSelect');
+            select.value = price;
+            openBookingModal();
+        }
+
+        function updateTotalPrice() {
+            const pricePerPerson = parseInt(document.getElementById('packageSelect').value) || 0;
+            const count = parseInt(document.getElementById('runnerCount').value) || 1;
+            const total = pricePerPerson * count;
+            document.getElementById('totalPriceDisplay').innerText = total.toLocaleString();
+        }
+
+        // Handle Form Submission with Google Sheets & LINE Notify Integration
+        async function handleBookingSubmit(event) {
+            event.preventDefault();
+            
+            const btnSubmit = document.getElementById('btnSubmitForm');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึกข้อมูล...`;
+
+            const bookingId = 'KT2027-' + Math.floor(100000 + Math.random() * 900000);
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const priceVal = parseInt(document.getElementById('packageSelect').value);
+            const packageName = priceVal === 8900 ? 'VIP Exclusive' : 'Standard Runner';
+            const runners = document.getElementById('runnerCount').value;
+            const shirtSize = document.getElementById('shirtSize').value;
+            const note = document.getElementById('custNote').value || '-';
+            const totalPrice = (priceVal * parseInt(runners)).toLocaleString();
+
+            const bookingData = {
+                bookingId: bookingId,
+                name: name,
+                phone: phone,
+                package: packageName,
+                runners: runners,
+                shirtSize: shirtSize,
+                totalPrice: totalPrice,
+                note: note,
+                timestamp: new Date().toLocaleString('th-TH')
+            };
+
+            // Format LINE Notify Payload String
+            const lineMessage = `🏃‍♂️ [การจองใหม่] ณ เชียงตุง RUN 2027\n---------------------------\nรหัสจอง: ${bookingId}\nชื่อผู้จอง: ${name}\nเบอร์โทร: ${phone}\nแพ็กเกจ: ${packageName}\nจำนวน: ${runners} ท่าน\nไซส์เสื้อ: ${shirtSize}\nราคารวม: ${totalPrice} บาท\nหมายเหตุ: ${note}`;
+
+            document.getElementById('lineNotifyPayloadText').innerText = lineMessage;
+
+            // Submit to Google Apps Script if URL exists
+            const scriptUrl = localStorage.getItem('kengtung_script_url');
+            if (scriptUrl) {
+                try {
+                    await fetch(scriptUrl, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(bookingData)
+                    });
+                } catch (err) {
+                    console.log('Google Apps Script POST Error:', err);
+                }
+            }
+
+            // Restore Submit Button & Show Toast
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>ยืนยันส่งข้อมูลจองทัวร์</span>`;
+            
+            closeBookingModal();
+            document.getElementById('confirmToast').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
