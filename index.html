@@ -205,7 +205,7 @@
         </div>
     </section>
 
-    <!-- Detailed Itinerary Timeline Section (นำส่วนนี้กลับคืนมาตามคำขอ) -->
+    <!-- Detailed Itinerary Timeline Section -->
     <section id="itinerary" class="py-12 md:py-20 bg-slate-950/60 border-y border-slate-800 px-4">
         <div class="max-w-5xl mx-auto">
             <div class="text-center mb-10 md:mb-16">
@@ -319,7 +319,7 @@
             <p class="text-xs md:text-sm text-slate-400 mb-6">หากมีข้อสงสัยเกี่ยวกับเอกสารผ่านด่าน เส้นทางวิ่ง หรือต้องการแจ้งโอนเงินเพิ่มเติม</p>
             
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                <a href="tel:0812345678" class="glass-card hover:border-amberGold p-4 rounded-2xl flex items-center justify-center gap-3 text-slate-200 transition">
+                <a href="tel:0832077782" class="glass-card hover:border-amberGold p-4 rounded-2xl flex items-center justify-center gap-3 text-slate-200 transition">
                     <i class="fa-solid fa-phone text-amberGold text-lg"></i>
                     <div class="text-left text-xs">
                         <span class="block text-slate-400">โทรศัพท์</span>
@@ -327,11 +327,12 @@
                     </div>
                 </a>
                 
-                <a href="https://line.me" target="_blank" class="glass-card hover:border-emerald-500 p-4 rounded-2xl flex items-center justify-center gap-3 text-slate-200 transition">
-                    <i class="fa-brands fa-line text-emerald-400 text-xl"></i>
+                <!-- เปลี่ยนเป็น Facebook Page Inbox -->
+                <a href="https://www.facebook.com/share/14vBWJreWLD/" target="_blank" class="glass-card hover:border-blue-500 p-4 rounded-2xl flex items-center justify-center gap-3 text-slate-200 transition">
+                    <i class="fa-brands fa-facebook-messenger text-blue-400 text-xl"></i>
                     <div class="text-left text-xs">
-                        <span class="block text-slate-400">LINE Official</span>
-                        <span class="font-bold">@kengtungrun</span>
+                        <span class="block text-slate-400">Facebook Page</span>
+                        <span class="font-bold">ทัก Inbox เพจ</span>
                     </div>
                 </a>
 
@@ -544,7 +545,11 @@
             btnSubmit.disabled = false;
             btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>ยืนยันส่งข้อมูลจองทัวร์</span>`;
             closeBookingModal();
-            alert('บันทึกข้อมูลการจองทัวร์เรียบร้อยแล้วครับ! กรุณาโอนเงินชำระภายใน 3 วัน');
+            
+            // ส่งไป Facebook Page หลังบันทึกข้อมูลสำเร็จ
+            if (confirm('บันทึกข้อมูลการจองทัวร์เรียบร้อยแล้วครับ! (โอนเงินภายใน 3 วัน)\n\nต้องการเปิด Facebook เพจ เพื่อส่งสลิปหรือแจ้งแอดมินทันทีหรือไม่?')) {
+                window.open('https://www.facebook.com/share/14vBWJreWLD/', '_blank');
+            }
         }
     </script>
 </body>
