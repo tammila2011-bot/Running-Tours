@@ -508,54 +508,50 @@
         }
 
         async function handleBookingSubmit(event) {
-    event.preventDefault();
-    const btnSubmit = document.getElementById('btnSubmitForm');
-    btnSubmit.disabled = true;
-    btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึกข้อมูล...`;
+            event.preventDefault();
+            const btnSubmit = document.getElementById('btnSubmitForm');
+            btnSubmit.disabled = true;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึกข้อมูล...`;
 
-    const priceVal = parseInt(document.getElementById('packageSelect').value);
-    const runners = document.getElementById('runnerCount').value;
+            const priceVal = parseInt(document.getElementById('packageSelect').value);
+            const runners = document.getElementById('runnerCount').value;
 
-    const bookingData = {
-        fullName: document.getElementById('custName').value,
-        phone: document.getElementById('custPhone').value,
-        citizenId: document.getElementById('custCitizenId').value,
-        package: priceVal === 6500 ? 'VIP Exclusive' : 'Standard Runner',
-        quantity: runners,
-        shirtSize: document.getElementById('shirtSize').value,
-        totalPrice: (priceVal * parseInt(runners)).toLocaleString(),
-        status: 'รอชำระเงิน',
-        timestamp: new Date().toLocaleString('th-TH')
-    };
+            const bookingData = {
+                fullName: document.getElementById('custName').value,
+                phone: document.getElementById('custPhone').value,
+                citizenId: document.getElementById('custCitizenId').value,
+                package: priceVal === 6500 ? 'VIP Exclusive' : 'Standard Runner',
+                quantity: runners,
+                shirtSize: document.getElementById('shirtSize').value,
+                totalPrice: (priceVal * parseInt(runners)).toLocaleString(),
+                status: 'รอชำระเงิน',
+                timestamp: new Date().toLocaleString('th-TH')
+            };
 
-    // ใส่ URL ของ Google Apps Script ของคุณลงในเครื่องหมายอัญประกาศตรงนี้ได้เลยครับ
-    const defaultScriptUrl = 'https://script.google.com/macros/s/AKfycbxtYV4z9HFZzgKLA7cuShs3UXeMoTGjK7k2F4ksCAlcLrbUgygb1Y9VknKnw_z41nKl/exec';
-    
-    // ดึงค่าจาก localStorage ถ้าไม่มีให้ใช้ defaultScriptUrl ทันที
-    const scriptUrl = localStorage.getItem('kengtung_script_url') || defaultScriptUrl;
-    
-    if (scriptUrl) {
-        try {
-            await fetch(scriptUrl, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(bookingData)
-            });
-        } catch (err) {
-            console.log('Error:', err);
+            // URL หลักสำหรับส่งข้อมูลเข้า Sheets บังคับใช้ตรงเสมอ
+            const scriptUrl = 'https://script.google.com/macros/s/AKfycbxtYV4z9HFZzgKLA7cuShs3UXeMoTGjK7k2F4ksCAlcLrbUgygb1Y9VknKnw_z41nKl/exec';
+
+            try {
+                // ส่งข้อมูลผ่าน fetch + no-cors ปรับใช้ Body แบบ JSON text โดยไม่สนใจ localStorage
+                await fetch(scriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(bookingData)
+                });
+            } catch (err) {
+                console.log('Error:', err);
+            }
+
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>ยืนยันส่งข้อมูลจองทัวร์</span>`;
+            closeBookingModal();
+            
+            // แจ้งเตือนบันทึกเรียบร้อย และนำทางไป Facebook Inbox
+            if (confirm('บันทึกข้อมูลการสมัครเรียบร้อยแล้วครับ!\n\nกรุณาโอนเงินและส่งสลิปใน Inbox เพจภายใน 3 วัน เพื่อยืนยันสิทธิ์\n\nกด "ตกลง" เพื่อเปิด Facebook Inbox เพจทันที')) {
+                window.open('https://www.facebook.com/share/14vBWJreWLD/', '_blank');
+            }
         }
-    }
-
-    btnSubmit.disabled = false;
-    btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>ยืนยันส่งข้อมูลจองทัวร์</span>`;
-    closeBookingModal();
-    
-    // แจ้งเตือนบันทึกเรียบร้อย และนำทางไป Facebook Inbox
-    if (confirm('บันทึกข้อมูลการสมัครเรียบร้อยแล้วครับ!\n\nกรุณาโอนเงินและส่งสลิปใน Inbox เพจภายใน 3 วัน เพื่อยืนยันสิทธิ์\n\nกด "ตกลง" เพื่อเปิด Facebook Inbox เพจทันที')) {
-        window.open('https://www.facebook.com/share/14vBWJreWLD/', '_blank');
-    }
-}
     </script>
 </body>
 </html>
