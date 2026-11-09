@@ -508,49 +508,50 @@
         }
 
         async function handleBookingSubmit(event) {
-            event.preventDefault();
-            const btnSubmit = document.getElementById('btnSubmitForm');
-            btnSubmit.disabled = true;
-            btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึกข้อมูล...`;
+    event.preventDefault();
+    const btnSubmit = document.getElementById('btnSubmitForm');
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> กำลังบันทึกข้อมูล...`;
 
-            const priceVal = parseInt(document.getElementById('packageSelect').value);
-            const runners = document.getElementById('runnerCount').value;
+    const priceVal = parseInt(document.getElementById('packageSelect').value);
+    const runners = document.getElementById('runnerCount').value;
 
-            const bookingData = {
-                fullName: document.getElementById('custName').value,
-                phone: document.getElementById('custPhone').value,
-                citizenId: document.getElementById('custCitizenId').value,
-                package: priceVal === 6500 ? 'VIP Exclusive' : 'Standard Runner',
-                quantity: runners,
-                shirtSize: document.getElementById('shirtSize').value,
-                totalPrice: (priceVal * parseInt(runners)).toLocaleString(),
-                status: 'รอชำระเงิน',
-                timestamp: new Date().toLocaleString('th-TH')
-            };
+    const bookingData = {
+        fullName: document.getElementById('custName').value,
+        phone: document.getElementById('custPhone').value,
+        citizenId: document.getElementById('custCitizenId').value,
+        package: priceVal === 6500 ? 'VIP Exclusive' : 'Standard Runner',
+        quantity: runners,
+        shirtSize: document.getElementById('shirtSize').value,
+        totalPrice: (priceVal * parseInt(runners)).toLocaleString(),
+        status: 'รอชำระเงิน',
+        timestamp: new Date().toLocaleString('th-TH')
+    };
 
-            const scriptUrl = localStorage.getItem('kengtung_script_url');
-            if (scriptUrl) {
-                try {
-                    await fetch(scriptUrl, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(bookingData)
-                    });
-                } catch (err) {
-                    console.log('Error:', err);
-                }
-            }
-
-            btnSubmit.disabled = false;
-            btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>ยืนยันส่งข้อมูลจองทัวร์</span>`;
-            closeBookingModal();
-            
-            // แจ้งเตือนบันทึกเรียบร้อย และนำทางไป Facebook Inbox
-            if (confirm('บันทึกข้อมูลการสมัครเรียบร้อยแล้วครับ!\n\nกรุณาโอนเงินและส่งสลิปใน Inbox เพจภายใน 3 วัน เพื่อยืนยันสิทธิ์\n\nกด "ตกลง" เพื่อเปิด Facebook Inbox เพจทันที')) {
-                window.open('https://www.facebook.com/share/14vBWJreWLD/', '_blank');
-            }
+    const scriptUrl = localStorage.getItem('kengtung_script_url');
+    if (scriptUrl) {
+        try {
+            // ปรับส่งข้อมูลแบบ text/plain เพื่อแก้ติดปัญหา CORS ใน Google Apps Script
+            await fetch(scriptUrl, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(bookingData)
+            });
+        } catch (err) {
+            console.log('Error:', err);
         }
+    }
+
+    btnSubmit.disabled = false;
+    btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>ยืนยันส่งข้อมูลจองทัวร์</span>`;
+    closeBookingModal();
+    
+    // แจ้งเตือนบันทึกเรียบร้อย และนำทางไป Facebook Inbox
+    if (confirm('บันทึกข้อมูลการสมัครเรียบร้อยแล้วครับ!\n\nกรุณาโอนเงินและส่งสลิปใน Inbox เพจภายใน 3 วัน เพื่อยืนยันสิทธิ์\n\nกด "ตกลง" เพื่อเปิด Facebook Inbox เพจทันที')) {
+        window.open('https://www.facebook.com/share/14vBWJreWLD/', '_blank');
+    }
+}
     </script>
 </body>
 </html>
