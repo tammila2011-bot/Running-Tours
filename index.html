@@ -528,10 +528,14 @@
         timestamp: new Date().toLocaleString('th-TH')
     };
 
-    const scriptUrl = localStorage.getItem('kengtung_script_url');
+    // ใส่ URL ของ Google Apps Script ของคุณลงในเครื่องหมายอัญประกาศตรงนี้ได้เลยครับ
+    const defaultScriptUrl = 'https://script.google.com/macros/s/AKfycbxtYV4z9HFZzgKLA7cuShs3UXeMoTGjK7k2F4ksCAlcLrbUgygb1Y9VknKnw_z41nKl/exec';
+    
+    // ดึงค่าจาก localStorage ถ้าไม่มีให้ใช้ defaultScriptUrl ทันที
+    const scriptUrl = localStorage.getItem('kengtung_script_url') || defaultScriptUrl;
+    
     if (scriptUrl) {
         try {
-            // ปรับส่งข้อมูลแบบ text/plain เพื่อแก้ติดปัญหา CORS ใน Google Apps Script
             await fetch(scriptUrl, {
                 method: 'POST',
                 mode: 'no-cors',
