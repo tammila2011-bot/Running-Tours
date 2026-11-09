@@ -81,12 +81,9 @@
                 <a href="#contact" class="hover:text-amberGold transition">ติดต่อเรา</a>
             </div>
 
-            <!-- CTA & Settings Buttons -->
+            <!-- CTA Button -->
             <div class="flex items-center gap-1.5 md:gap-3">
-                <button onclick="openConfigModal()" title="ตั้งค่าระบบ Google Sheets" class="glass-card hover:bg-slate-800 text-teal-300 border border-teal-500/30 p-2 md:p-2.5 rounded-full transition text-xs md:text-sm">
-                    <i class="fa-solid fa-gear"></i>
-                </button>
-                <button onclick="openBookingModal()" class="bg-gradient-to-r from-sunsetOrange to-amberGold hover:from-amber-600 hover:to-orange-600 text-white font-medium px-3 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg shadow-orange-500/20 transition transform hover:-translate-y-0.5 text-xs md:text-sm flex items-center gap-1.5">
+                <button onclick="openBookingModal()" class="bg-gradient-to-r from-sunsetOrange to-amberGold hover:from-amber-600 hover:to-orange-600 text-white font-medium px-4 md:px-5 py-2 md:py-2.5 rounded-full shadow-lg shadow-orange-500/20 transition transform hover:-translate-y-0.5 text-xs md:text-sm flex items-center gap-1.5">
                     <i class="fa-solid fa-ticket"></i>
                     <span>จองทัวร์ด่วน</span>
                 </button>
@@ -251,7 +248,7 @@
                                 <li><strong class="text-teal-300 font-normal">05:30 - 07:30 น.</strong> <span class="bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded text-[10px]">Morning Run</span> วิ่งรับอรุณรอบหนองตุง ชมทะเลหมอกเหนือผิวน้ำ</li>
                                 <li><strong class="text-teal-300 font-normal">09:00 - 12:00 น.</strong> ขึ้นสู่จุดชมวิวขุนเขา <strong class="text-pink-300 font-normal">ชมชมต้นยางไม้ยักษ์คู่เมือง 250 ปี</strong> และดอกไม้ที่สูงบานสะพรั่ง</li>
                                 <li><strong class="text-teal-300 font-normal">13:30 - 16:00 น.</strong> เยือนวัดจอมคำ สักการะพระชี้นิ้ว Yat Taw Mu Buddha  </li>
-                                <li><strong class="text-teal-300 font-normal">16:30 - 18:00 น.</strong> <span class="bg-orange-500/20 text-orange-300 px-1.5 py-0.5 rounded text-[10px]">Sunset Run</span> ชมรมวิ่งเชียงตุงพาวิ่งรอบหนองตุงยามอาทิตย์อัสดง ชมแสงสีทองสะท้อนผิวน้ำ</li>
+                                <li><strong class="text-teal-300 font-normal">16:30 - 18:00 น.</strong> <span class="bg-orange-500/20 text-orange-300 px-1.5 py-0.5 rounded text-[10px]">Sunset Run</span> ชมรมวิ่งเชียงตุงพาวิ่งรอบหนองตุงยามอาทิตย์อัสดง ชมแสงสีทองสะพ้อนผิวน้ำ</li>
                                 <li><strong class="text-teal-300 font-normal">19:00 น.</strong> รับประทานอาหารค่ำ พร้อมมอบของที่ระลึกประจำทริป</li>
                             </ul>
                         </div>
@@ -444,23 +441,6 @@
         </div>
     </div>
 
-    <!-- Admin Config Modal -->
-    <div id="configModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="glass-card rounded-3xl max-w-xl w-full p-5 md:p-8 border border-teal-500/40 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeConfigModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl p-2">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <h3 class="text-xl font-bold text-white mb-2">ตั้งค่าการเชื่อมต่อ Google Sheets</h3>
-            <form onsubmit="saveConfig(event)" class="space-y-4">
-                <div>
-                    <label class="block text-xs text-teal-300 font-medium mb-1">Google Apps Script Web App URL</label>
-                    <input type="url" id="cfgScriptUrl" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs md:text-sm focus:outline-none focus:border-teal-400">
-                </div>
-                <button type="submit" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-medium py-3 rounded-xl transition text-sm">บันทึกการตั้งค่า</button>
-            </form>
-        </div>
-    </div>
-
     <script>
         const targetDate = new Date(2027, 0, 8, 0, 0, 0).getTime();
 
@@ -491,15 +471,6 @@
         }
 
         function closeBookingModal() { document.getElementById('bookingModal').classList.add('hidden'); }
-        function openConfigModal() { document.getElementById('cfgScriptUrl').value = localStorage.getItem('kengtung_script_url') || ''; document.getElementById('configModal').classList.remove('hidden'); }
-        function closeConfigModal() { document.getElementById('configModal').classList.add('hidden'); }
-        
-        function saveConfig(e) {
-            e.preventDefault();
-            localStorage.setItem('kengtung_script_url', document.getElementById('cfgScriptUrl').value.trim());
-            closeConfigModal();
-            alert('บันทึก Web App URL เรียบร้อยแล้ว');
-        }
 
         function updateTotalPrice() {
             const pricePerPerson = parseInt(document.getElementById('packageSelect').value) || 0;
@@ -528,11 +499,9 @@
                 timestamp: new Date().toLocaleString('th-TH')
             };
 
-            // URL หลักสำหรับส่งข้อมูลเข้า Sheets บังคับใช้ตรงเสมอ
             const scriptUrl = 'https://script.google.com/macros/s/AKfycbxtYV4z9HFZzgKLA7cuShs3UXeMoTGjK7k2F4ksCAlcLrbUgygb1Y9VknKnw_z41nKl/exec';
 
             try {
-                // ส่งข้อมูลผ่าน fetch + no-cors ปรับใช้ Body แบบ JSON text โดยไม่สนใจ localStorage
                 await fetch(scriptUrl, {
                     method: 'POST',
                     mode: 'no-cors',
@@ -547,7 +516,6 @@
             btnSubmit.innerHTML = `<i class="fa-solid fa-paper-plane"></i> <span>ยืนยันส่งข้อมูลจองทัวร์</span>`;
             closeBookingModal();
             
-            // แจ้งเตือนบันทึกเรียบร้อย และนำทางไป Facebook Inbox
             if (confirm('บันทึกข้อมูลการสมัครเรียบร้อยแล้วครับ!\n\nกรุณาโอนเงินและส่งสลิปใน Inbox เพจภายใน 3 วัน เพื่อยืนยันสิทธิ์\n\nกด "ตกลง" เพื่อเปิด Facebook Inbox เพจทันที')) {
                 window.open('https://www.facebook.com/share/14vBWJreWLD/', '_blank');
             }
